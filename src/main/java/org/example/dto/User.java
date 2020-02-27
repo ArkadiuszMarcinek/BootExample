@@ -1,9 +1,27 @@
 package org.example.dto;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.Objects;
+
 import org.example.enums.Sex;
 
-public class User {
+public class User  {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(birthday, user.birthday) &&
+                sex == user.sex;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, birthday, sex, age);
+    }
 
     private final String name;
     private final LocalDate birthday;
